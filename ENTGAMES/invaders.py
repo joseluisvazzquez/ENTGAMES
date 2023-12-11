@@ -1,8 +1,8 @@
 import pygame
-from aircraft import Aircraft
+from aircraft import Aircraft, background
 pygame.init()
 
-screen = pygame.display.set_mode((800,600))
+screen = pygame.display.set_mode((900,600))
 
 aircraft = Aircraft()
 #enemies = Enemies()
@@ -30,9 +30,9 @@ while not exit:
     if keyboard[pygame.K_DOWN]:
         aircraft.movedown()
 
-    screen.fill((255,200,255))
+    background_img = background()
     #pygame.draw.rect(pantalla,(255,255,255),pygame.Rect(posIzd,posTop,60,60))
-    
+    background.draw()
     aircraft.paint()
     #redibujar juego
     pygame.display.flip()

@@ -1,6 +1,5 @@
 import pygame
 
-
 class Aircraft:
     def __init__(self) -> None:
         self.posleft = 30
@@ -16,16 +15,29 @@ class Aircraft:
         screen.blit(self.aircraft[selected],(self.posleft, self.postop))
     
     def moveleft(self):
-        if(self.posleft > 1):
-            self.posleft -= 1
+        if(self.posleft > 0):
+            self.posleft -= 10
     def moveright(self):
-        if(self.posleft > 1):
-            self.posleft += 1
+        if(self.posleft > 0):
+            self.posleft += 10
     def movetop(self):
-        if(self.postop > 1):
-            self.postop -= 1
+        if(self.postop > 0):
+            self.postop -= 10
     def movedown(self):
-        if(self.postop > 1):
-            self.postop += 1
-    
+        if(self.postop > 0):
+            self.postop += 10
 
+
+class background:
+    def __init__(self) -> None:
+         screen = pygame.display.get_surface()
+         image = pygame.image.load("fondo.png")
+         self.background = pygame.transform.scale(image,(screen.get_width(), image.set_height()))
+         self.scroll = 0
+         
+    def draw(self):
+        self.scroll += 1
+        screen = pygame.display.get_surface()
+        screen.blit(self.background,[0,0])
+        if self.scroll > screen.get_height():
+            self.scroll = 0
