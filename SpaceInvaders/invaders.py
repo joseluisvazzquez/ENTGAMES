@@ -23,15 +23,18 @@ while not exit:
     keyboard = pygame.key.get_pressed()
     if not keyboard[pygame.K_LEFT] and not keyboard[pygame.K_RIGHT]:
        aircraft.paint()
+       
+    if keyboard[pygame.K_LEFT] and  keyboard[pygame.K_RIGHT]:
+        aircraft.paint()
 
-    if keyboard[pygame.K_LEFT]:
+    if keyboard[pygame.K_LEFT] and not keyboard[pygame.K_RIGHT]:
         aircraft.moveleft()
         aircraft.paintleft()
 
     if keyboard[pygame.K_UP]:
         aircraft.movetop()
         
-    if keyboard[pygame.K_RIGHT]:
+    if keyboard[pygame.K_RIGHT] and not keyboard[pygame.K_LEFT]:
         aircraft.moveright()
         aircraft.paintright()
     
