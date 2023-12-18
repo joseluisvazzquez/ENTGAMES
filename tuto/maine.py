@@ -17,4 +17,13 @@ class Nave(pygame.sprite.Sprite):
             self.rect.x -=2
         if teclas[pygame.K_RIGHT]:
             self.rect.x +=2
+
+        self.rect.y += 2
+        pantalla = pygame.display.get_surface()
+        if (self.rect.y > pantalla.get_height()):
+            self.kill()
     
+    class fondo[pygame.sprite.Sprite]:
+        def __init__(self) -> None:
+            super().__init__()
+            manolo = pygame.image.load("bgrotado.pngs")
