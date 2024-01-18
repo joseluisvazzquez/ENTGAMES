@@ -40,9 +40,6 @@ while not exit:
     
     if keyboard[pygame.K_DOWN]:
         aircraft.movedown()
-    if keyboard[pygame.K_BACKSPACE]:
-        aircraft.shoot()
-    
     
 
     #redibujar juego
