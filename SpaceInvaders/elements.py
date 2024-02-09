@@ -14,27 +14,31 @@ class Aircraft(pygame.sprite.Sprite):
         self.current_sprite = 0
         self.image = self.sprites[self.current_sprite]
         self.rect = self.image.get_rect()
-        self.rect.topleft = (95, 90)
+        self.rect.topleft = (200, 800)
+        # self.width_sprites = self.sprites.get_width()
+        # self.width_sprites = self.sprites.get_width()
     def update(self):
         self.handle_input()
-        # self.animate()
 
     def handle_input(self):
         keys = pygame.key.get_pressed()
+        pantalla = pygame.display.get_surface()
         if not keys[pygame.K_LEFT] and not keys[pygame.K_RIGHT]:
             self.animate()
 
+        print(self.rect.right)
+        print(pantalla.get_width())
         if keys[pygame.K_LEFT] and self.rect.left > 0:
             self.rect.x -= 3
             self.image = self.sprites_movement[0]
-        if keys[pygame.K_RIGHT] and self.rect.right < 492:
+        if keys[pygame.K_RIGHT] and self.rect.x + self.image.get_width() < pantalla.get_width():
             self.rect.x += 3
             self.image = self.sprites_movement[1]
         
         if keys[pygame.K_UP] and self.rect.top > 0:
             self.rect.y -= 3
             self.animate()
-        if keys[pygame.K_DOWN] and self.rect.bottom < 892:
+        if keys[pygame.K_DOWN] and self.rect.bottom < pantalla.get_height():
             self.rect.y += 3
             self.animate()
 

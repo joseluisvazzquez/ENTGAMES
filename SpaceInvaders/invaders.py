@@ -1,11 +1,6 @@
 import pygame
 from elements import Aircraft, Background
 
-# Primero crearemos el fondo
-
-#Creacion de los sprites en la pantalla
-
-
 background = Background()
 
 aircraft = Aircraft()
