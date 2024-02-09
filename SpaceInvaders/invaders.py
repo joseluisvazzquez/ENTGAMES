@@ -24,35 +24,7 @@ while not exit:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             exit = True
-<<<<<<< HEAD
         
-=======
-    #gestionar cambiso 
-    background_image = pygame.image.load("SpaceInvaders/background.png")
-    screen.blit(background_image, [0, 0])
-    
-    keyboard = pygame.key.get_pressed()
-    if not keyboard[pygame.K_LEFT] and not keyboard[pygame.K_RIGHT]:
-       aircraft.paint()
-       
-    if keyboard[pygame.K_LEFT] and  keyboard[pygame.K_RIGHT]:
-        aircraft.paint()
-
-    if keyboard[pygame.K_LEFT] and not keyboard[pygame.K_RIGHT]:
-        aircraft.moveleft()
-        aircraft.paintleft()
-
-    if keyboard[pygame.K_UP]:
-        aircraft.movetop()
-        
-    if keyboard[pygame.K_RIGHT] and not keyboard[pygame.K_LEFT]:
-        aircraft.moveright()
-        aircraft.paintright()
-    
-    if keyboard[pygame.K_DOWN]:
-        aircraft.movedown()
-    
->>>>>>> 54b74b593ef8295d69207400b7b7b8d6f0e0aa11
 
     keyboard = pygame.key.get_pressed()
     all_sprites.update()
