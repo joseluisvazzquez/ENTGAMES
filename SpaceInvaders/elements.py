@@ -9,13 +9,12 @@ class Aircraft(pygame.sprite.Sprite):
             pygame.image.load("SpaceInvaders/aircraft_img/avion2.png")
             ]
         self.sprites_movement = [
-            pygame.image.load("SpaceInvaders/aircraft_img/avion-left.png"),
-            pygame.image.load("SpaceInvaders/aircraft_img/avion-right.png")]
+            pygame.transform.scale(pygame.image.load("SpaceInvaders/aircraft_img/avion-left.png"), (95,90)),
+            pygame.transform.scale(pygame.image.load("SpaceInvaders/aircraft_img/avion-right.png"), (95,90))]
         self.current_sprite = 0
         self.image = self.sprites[self.current_sprite]
         self.rect = self.image.get_rect()
-        self.rect.topleft = (200, 400)
-
+        self.rect.topleft = (95, 90)
     def update(self):
         self.handle_input()
         # self.animate()
@@ -28,14 +27,14 @@ class Aircraft(pygame.sprite.Sprite):
         if keys[pygame.K_LEFT] and self.rect.left > 0:
             self.rect.x -= 3
             self.image = self.sprites_movement[0]
-        if keys[pygame.K_RIGHT] and self.rect.right < 482:
+        if keys[pygame.K_RIGHT] and self.rect.right < 492:
             self.rect.x += 3
             self.image = self.sprites_movement[1]
         
         if keys[pygame.K_UP] and self.rect.top > 0:
             self.rect.y -= 3
             self.animate()
-        if keys[pygame.K_DOWN] and self.rect.bottom < 898:
+        if keys[pygame.K_DOWN] and self.rect.bottom < 892:
             self.rect.y += 3
             self.animate()
 
@@ -44,7 +43,7 @@ class Aircraft(pygame.sprite.Sprite):
         if self.current_sprite > 1:
             self.current_sprite = 0
         self.image = self.sprites[self.current_sprite]
-        self.image = pygame.transform.scale(self.image, (50, 50))
+        self.image = pygame.transform.scale(self.image, (95, 90))
 class Background:
     def __init__(self) -> None:
         width = 482
