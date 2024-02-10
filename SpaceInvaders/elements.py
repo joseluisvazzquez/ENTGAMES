@@ -2,7 +2,7 @@ from random import randint
 import pygame
 
 class Aircraft(pygame.sprite.Sprite):
-    def __init__(self):
+    def __init__(self, bullet_group):
         super().__init__()
         self.sprites = [
             pygame.image.load("SpaceInvaders/aircraft_img/avion1.png"),
@@ -15,40 +15,65 @@ class Aircraft(pygame.sprite.Sprite):
         self.image = self.sprites[self.current_sprite]
         self.rect = self.image.get_rect()
         self.rect.topleft = (200, 800)
-        # self.width_sprites = self.sprites.get_width()
-        # self.width_sprites = self.sprites.get_width()
+        self.bullet_group = bullet_group
+        self.final_shot = pygame.time.get_ticks()
+        
+        
     def update(self):
-        self.handle_input()
-
-    def handle_input(self):
         keys = pygame.key.get_pressed()
         pantalla = pygame.display.get_surface()
+        speed = 3
+        cooldown = 500
+        
         if not keys[pygame.K_LEFT] and not keys[pygame.K_RIGHT]:
             self.animate()
-
-        print(self.rect.right)
-        print(pantalla.get_width())
+        
         if keys[pygame.K_LEFT] and self.rect.left > 0:
-            self.rect.x -= 3
+            self.rect.x -= speed
             self.image = self.sprites_movement[0]
+        
         if keys[pygame.K_RIGHT] and self.rect.x + self.image.get_width() < pantalla.get_width():
-            self.rect.x += 3
+            self.rect.x += speed
             self.image = self.sprites_movement[1]
         
         if keys[pygame.K_UP] and self.rect.top > 0:
-            self.rect.y -= 3
+            self.rect.y -= speed
             self.animate()
-        if keys[pygame.K_DOWN] and self.rect.bottom < pantalla.get_height():
-            self.rect.y += 3
+            
+        if keys[pygame.K_DOWN] and self.rect.y + self.image.get_height() < pantalla.get_height():
+            self.rect.y += speed
             self.animate()
-
+        time_now = pygame.time.get_ticks()
+        if keys[pygame.K_SPACE] and time_now - self.final_shot > cooldown: 
+            bullet = Bullet(self.rect.centerx, self.rect.top) 
+            self.bullet_group.add(bullet)
+            self.final_shot = time_now          
+      
     def animate(self):
         self.current_sprite += 1
         if self.current_sprite > 1:
             self.current_sprite = 0
         self.image = self.sprites[self.current_sprite]
         self.image = pygame.transform.scale(self.image, (95, 90))
+        
+    def create_bullet(self):
+        return Bullet(self.rect.x,self.rect.y)
+    
+class Bullet(pygame.sprite.Sprite):
+    def __init__(self,x, y):
+        super().__init__()
+        self.image = pygame.transform.scale(pygame.image.load("SpaceInvaders/aircraft_img/bullet.png"), (20, 30))
+        self.rect = self.image.get_rect()
+        self.rect.center = [x, y]
+        
+
+    def update(self):
+        self.rect.y  -= 5
+        if self.rect.y < 0:
+            self.kill()
+
 class Background:
+    
     def __init__(self) -> None:
         width = 482
         height = 892

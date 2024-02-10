@@ -1,11 +1,15 @@
-import pygame
-from elements import Aircraft, Background
+import pygame, sys
+from elements import Aircraft, Background, Bullet
 
 background = Background()
+bullet_group = pygame.sprite.Group()
 
-aircraft = Aircraft()
+aircraft = Aircraft(bullet_group)
 all_sprites = pygame.sprite.Group()
 all_sprites.add(aircraft)
+
+
+# bullet_sprites.add(bullet)
 
 pygame.init()
 
@@ -18,15 +22,16 @@ while not exit:
     #gestionar eventos
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            exit = True
-        
-
-    keyboard = pygame.key.get_pressed()
+            pygame.quit()
+            sys.exit()
+     
+     
     all_sprites.update()
+    bullet_group.update()
     background.scrollback()
     all_sprites.draw(background.screen)
+    bullet_group.draw(background.screen)
+    
     #redibujar juego
-    
-    
     pygame.display.flip()
 pygame.quit()
