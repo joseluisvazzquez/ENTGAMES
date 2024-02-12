@@ -1,9 +1,9 @@
-from random import randint
+import random
 import pygame
 
 class Aircraft(pygame.sprite.Sprite):
-    def __init__(self, bullet_group):
-        super().__init__()
+    def __init__(self, bullet_group):# alien_group
+        super().__init__() 
         self.sprites = [
             pygame.image.load("SpaceInvaders/aircraft_img/avion1.png"),
             pygame.image.load("SpaceInvaders/aircraft_img/avion2.png")
@@ -16,6 +16,7 @@ class Aircraft(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.topleft = (200, 800)
         self.bullet_group = bullet_group
+ 
         self.final_shot = pygame.time.get_ticks()
         
         
@@ -68,10 +69,39 @@ class Bullet(pygame.sprite.Sprite):
         
 
     def update(self):
-        self.rect.y  -= 5
+        self.rect.y -= 5
         if self.rect.y < 0:
             self.kill()
+                
+class Enemy(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        super().__init__()       
+        self.image = pygame.transform.scale(pygame.image.load("SpaceInvaders/enemy_img/e"+ str(random.randint(1, 2))+".png"),(110, 100))
+        self.rect = self.image.get_rect()
+        self.rect.center = [x, y]
+        self.speed = 2
+        
+    def update(self):
+        self.rect.y += 3
+        self.rect.x += self.speed
+        pantalla = pygame.display.get_surface()
 
+        if self.rect.left < 0 or self.rect.right > random.randint(400, 800):
+            self.speed *= -1
+        if self.rect.x  + self.image.get_width()< 0 or self.rect.y + self.image.get_height() > pantalla.get_height() + 30:
+            self.kill()
+class EnemyBullet(pygame.sprite.Sprite):
+    def __init__(self,x, y):
+        super().__init__()
+        self.image = pygame.transform.scale(pygame.image.load("SpaceInvaders/enemy_img/enemy_bullet.png"), (20, 30))
+        self.rect = self.image.get_rect()
+        self.rect.center = [x, y] 
+        
+    def update(self):
+        pantalla = pygame.display.get_surface()
+        self.rect.y += 6
+        if self.rect.y > pantalla.get_height():
+            self.kill()       
 class Background:
     
     def __init__(self) -> None:
