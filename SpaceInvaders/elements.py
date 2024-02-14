@@ -7,7 +7,7 @@ enemy_bullet_group =  pygame.sprite.Group()
 aircraft_sprites = pygame.sprite.Group()
 explosion_group = pygame.sprite.Group()
 
-score = 10
+score = 0
 font_name = pygame.font.match_font('arial')
 def increment_score(points):
     global score
