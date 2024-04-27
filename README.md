@@ -1,2 +1,23 @@
-# ENTGAMES
-<div align="center"><img src="https://raw.githubusercontent.com/joseluisvazzquez/joseluisvazzquez/main/a4.gif" width="100%" height="200"></div>
+
+# Retro Plane
+
+Eres un caza de guerra en medio de una guerra fulminante! Acaba con tus enemigos y consigue llegar a la maxima puntuación!
+
+
+
+
+
+## Como iniciarlo?
+
+Primero, tendremos que inicarlo desde el VSCode  y listo! A JUGAR!
+;;;;;;
+
+
+
+## Controles!
+
+Funciona con las flechas! Y para disparar el espacio!
+''''
+## Funcionalidades!
+
+Cuando llegues a 10 puntos tu nave y el escenario cambiaran! También se incrementará la dificultad!
