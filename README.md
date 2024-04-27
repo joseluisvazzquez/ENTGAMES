@@ -10,7 +10,7 @@ Eres un caza de guerra en medio de una guerra fulminante! Acaba con tus enemigos
 ## Como iniciarlo?
 
 Primero, tendremos que inicarlo desde el VSCode  y listo! A JUGAR!
-![](https://github.com/joseluisvazzquez/ENTGAMES/blob/main/RetroPlane/exemple.gif)
+![](https://github.com/joseluisvazzquez/ENTGAMES/blob/main/RetroPlane/Exemple.gif)
 
 
 
